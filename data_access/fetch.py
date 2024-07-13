@@ -1,5 +1,6 @@
 import sqlite3
 from .connection import connect, close
+from .operation import table_exists
 #from prettytable.colortable import ColorTable, Themes
 from prettytable import PrettyTable
 
@@ -11,6 +12,10 @@ def fetch(db_name, table_name):
     
     con = connect(db_name)
     cur = con.cursor()
+
+    if not table_exists(db_name, table_name):
+        print('La tabla no existe.')
+        exit(1)
 
     cur.execute(f'SELECT * FROM "{table_name}"')
 

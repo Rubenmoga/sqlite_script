@@ -22,7 +22,19 @@ def isert_row(db_name, table_name, new_row):
     con = connect(db_name)
     cur = con.cursor()
 
+    new_row = new_row.split(',')
+            
     cur.execute(f'INSERT INTO "{table_name}" (Nombre, Nota, Director, Tipo) VALUES (?,?,?,?)',new_row)
 
     con.commit()
     close(con)
+
+
+def table_exists(db_name, table_name):
+    con = connect(db_name)
+    cur = con.cursor()
+
+    cur.execute(f'''SELECT "{table_name}" FROM sqlite_master WHERE type = 'table' ''')
+    result = cur.fetchone()
+
+    return result

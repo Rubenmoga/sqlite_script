@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from config import DB_NAME
 import argparse
 from data_access.operation import isert_row, create_table
@@ -12,15 +14,14 @@ def main():
     )
 
     parser.add_argument('table_name', type=str, help='Nombre de la tabla sobre la que quiero actuar')
-    parser.add_argument('-n', '--new', action='store', help= 'Añadir una nueva linea a una tabla') # Añadir a posteriori la multiple adición con nargs='+'
+    parser.add_argument('-n', '--new', action='store', help= 'Añadir una nueva linea a una tabla')
     parser.add_argument('-nt', '--newtable',action='store_true', help='Crea una nueva tabla en la base de datos con el nombre de table_name')
     parser.add_argument('-icsv', '--importcsv', action='store',nargs=1, help='Importa los datos de un csv en una nueva o ya existente base de datos')
 
     args = parser.parse_args()
    
     if args.new:
-        print(args.new)
-        #isert_row(DB_NAME, args.table_name, args.new[0])
+        isert_row(DB_NAME, args.table_name, args.new)
     elif args.newtable:
         create_table(DB_NAME, args.table_name)
     elif args.importcsv:

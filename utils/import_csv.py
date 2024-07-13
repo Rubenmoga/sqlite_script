@@ -1,11 +1,12 @@
 from data_access.connection import connect, close
+from config import CSV_PATH
 import sqlite3
 import csv
 import os
 
 def import_csv(db_name, table_name,csv_name):
 
-    file_path = os.path.expanduser(f'~/Descargas/{csv_name}')
+    file_path = os.path.expanduser(f'{CSV_PATH}{csv_name}')
 
     if not os.path.isfile(file_path):
         print('El archivo csv no existe.')
