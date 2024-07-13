@@ -2,7 +2,7 @@ Fichero de constantes
 
 Pasarlo a ejecutable del sistema #!/usr/bin/env python3
 
-poner que importcsv pueda hacerse en una tabla ya existente
+Poner que importcsv pueda hacerse en una tabla ya existente
 
 
 ## Argumentos

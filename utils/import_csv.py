@@ -1,4 +1,4 @@
-from database.connection import connect, close
+from data_access.connection import connect, close
 import sqlite3
 import csv
 import os
@@ -12,10 +12,10 @@ def import_csv(db_name, table_name,csv_name):
         exit(1)
 
     # Conecta con la base de datos y si no existe la crea
-    con = connect(db_table)
+    con = connect(db_name)
     cur = con.cursor()
 
-    cur.execute(f'''CREATE TABLE IF NOT EXIST "{table_name}"(
+    cur.execute(f'''CREATE TABLE IF NOT EXISTS "{table_name}"(
             ID INTEGER PRIMARY key AUTOINCREMENT,
             Nombre TEXT,
             Nota REAL,
@@ -25,7 +25,7 @@ def import_csv(db_name, table_name,csv_name):
     ''')
 
 
-    with open(csv_name, 'r') as file:
+    with open(file_path, 'r') as file:
         reader = csv.reader(file)
         headers = next(reader)
         for row in reader:

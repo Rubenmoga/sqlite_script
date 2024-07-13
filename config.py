@@ -1,1 +1,1 @@
-DB_NAME = Peliculas
+DB_NAME = 'Peliculas'

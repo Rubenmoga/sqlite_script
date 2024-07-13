@@ -5,7 +5,7 @@ def create_table(db_name, table_name):
     con = connect(db_name)
     cur = con.cursor()
 
-    cur.execute(f'''CREATE TABLE IF NOT EXIST "{table_name}"
+    cur.execute(f'''CREATE TABLE IF NOT EXISTS "{table_name}"(
             ID INTEGER PRIMARY key AUTOINCREMENT,
             Nombre TEXT,
             Nota REAL,
