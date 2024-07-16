@@ -2,7 +2,7 @@
 
 from config import DB_NAME
 import argparse
-from data_access.operation import isert_row, create_table, delete_row
+from data_access.operation import isert_row, create_table, delete_row, edit
 from data_access.fetch import fetch
 from utils.import_csv import import_csv
 
@@ -18,6 +18,7 @@ def main():
     parser.add_argument('-nt', '--newtable',action='store_true', help='Crea una nueva tabla en la base de datos con el nombre de table_name')
     parser.add_argument('-icsv', '--importcsv', action='store',nargs=1, help='Importa los datos de un csv en una nueva o ya existente base de datos')
     parser.add_argument('-d', '--delete', action='store', help='Elimina la liena que corresponda con el ID indicado en la tabla.')
+    parser.add_argument('-e', '--edit', action='store', nargs=3, help='Reemplaza el campo indicado y en el id indicado por otro valor.')
 
     args = parser.parse_args()
    
@@ -29,6 +30,8 @@ def main():
         import_csv(DB_NAME, args.table_name, args.importcsv[0])
     elif args.delete:
         delete_row(DB_NAME, args.table_name, args.delete)
+    elif args.edit:
+        edit(DB_NAME, args.table_name, args.edit[0], args.edit[1], args.edit[2])
     else:
         fetch(DB_NAME, args.table_name)
 
