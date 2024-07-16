@@ -30,6 +30,16 @@ def isert_row(db_name, table_name, new_row):
     close(con)
 
 
+def delete_row(db_name, table_name, id_row):
+    con = connect(db_name)
+    cur = con.cursor()
+
+    cur.execute(f'DELETE FROM "{table_name}" WHERE ID={id_row}')
+
+    con.commit()
+    close()
+
+
 def table_exists(db_name, table_name):
     con = connect(db_name)
     cur = con.cursor()
